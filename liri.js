@@ -13,8 +13,7 @@ function liri() {
     switch (command) {
         case "concert-this":
             axios.get("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp").then(function (response) {
-                console.log("Lineup: " + response.data[0].lineup);
-                console.log("Name of venue: " + response.data[0].venue.name +
+                console.log("Lineup: " + response.data[0].lineup + "\nName of venue: " + response.data[0].venue.name +
                     "\nVenue location: " + response.data[0].venue.city + ", " + response.data[0].venue.region +
                     "\nDate of the event: " + moment(response.data[0].datetime).format('MMMM Do YYYY, h:mm:ss a'));
             })
@@ -72,9 +71,10 @@ function liri() {
                     return console.log(error);
                 }
                 var output = data.split(",");
-                var command = output[0];
-                var userInput = output[1];
-        });
+                command = output[0];
+                userInput = output[1];
+                liri();
+            });
             break;
         default:
             return console.log("Sorry, need a valid command!");
